@@ -1,4 +1,5 @@
 ﻿using Financeiro.DAO;
+using Financeiro.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +11,39 @@ namespace Financeiro.Controllers
     public class MovimentacaoController : Controller
     {
         private MovimentacaoDAO movimentacaoDAO;
+        private UsuarioDAO usuarioDAO;
 
-        public MovimentacaoController(MovimentacaoDAO movimentacaoDAO)
+        public MovimentacaoController(MovimentacaoDAO movimentacaoDAO, UsuarioDAO usuarioDAO)
         {
             this.movimentacaoDAO = movimentacaoDAO;
+            this.usuarioDAO = usuarioDAO;
         }
 
         public ActionResult Form()
         {
+            ViewBag.Usuarios = usuarioDAO.ListaUsuario();
+
             return View();
+        }
+
+        public ActionResult Adiciona(Movimentacao movimentacao)
+        {
+            if (ModelState.IsValid)
+            {
+                movimentacaoDAO.Adiciona(movimentacao);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Usuarios = usuarioDAO.ListaUsuario();
+                return View("Form", movimentacao);
+            }
+        }
+
+        public ActionResult Index()
+        {
+            IList<Movimentacao> movimentacao = movimentacaoDAO.ListaMovimentacao();
+            return View(movimentacao);
         }
     }
 }

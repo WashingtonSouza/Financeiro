@@ -158,6 +158,8 @@
     <Content Include="Views\Shared\_MenuSuperior.cshtml" />
     <Content Include="Views\Usuario\Form.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Movimentacao\Form.cshtml" />
+    <Content Include="Views\Movimentacao\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -165,9 +167,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Movimentacao\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201707042020535_TabelasIniciais.resx">
       <DependentUpon>201707042020535_TabelasIniciais.cs</DependentUpon>
